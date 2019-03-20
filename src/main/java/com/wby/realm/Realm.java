@@ -1,6 +1,7 @@
 package com.wby.realm;
 
 import com.wby.entity.User;
+import com.wby.repository.RoleRepository;
 import com.wby.repository.UserRepository;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -22,6 +23,10 @@ public class Realm extends AuthorizingRealm {
 
     @Resource
     UserRepository userRepository;
+
+    @Resource
+    RoleRepository roleRepository;
+
 
     /**
      * 授权

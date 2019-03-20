@@ -1,6 +1,7 @@
 package com.wby.service;
 
-import com.wby.entity.User;
+import com.wby.entity.Role;
+
 
 /**
  * Created with IDEA
@@ -14,5 +15,13 @@ public interface RoleService {
      * @param userId
      * @return
      */
-    User findByUserId(Integer userId);
+    Role findByUserId(Integer userId);
+
+
+    /**
+     * 根据id查角色
+     * @param id
+     * @return
+     */
+    Role findById(Integer id);
 }

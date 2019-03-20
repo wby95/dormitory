@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>高校宿舍管理系统</title>
+<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.3.3/themes/default/easyui.css"></link>
+<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.3.3/themes/icon.css"></link>
+<style type="text/css">
+
+	.clock {
+		float:right;
+	    width: 300px;
+	    height: 30px;
+	    padding-left: 20px;
+	    color: rgb(0, 76, 126);
+	    background: url(/static/images/clock.gif) no-repeat;
+	    font-size: 14px;
+	}
+	
+	.userInfo{
+		float:left;
+		padding-left: 20px;
+		padding-top: 30px;
+	}
+	
+</style>
+<script type="text/javascript" src="/static/jquery-easyui-1.3.3/jquery.min.js"></script>
+<script type="text/javascript" src="/static/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+
+	function showTime(){
+		var date = new Date();
+		this.year = date.getFullYear();
+		this.month = date.getMonth() + 1;
+		this.date = date.getDate();
+		this.day = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六")[date.getDay()];
+		this.hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+		this.minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+		this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+		$("#clock").text("现在是:" + this.year + "年" + this.month + "月" + this.date + "日 " + this.hour + ":" + this.minute + ":" + this.second + " " + this.day);
+	}
+
+	$(document).ready(function() {
+
+        window.setInterval("showTime()", 1000);
+
+        //加载验证信息
+        $("#userInfo").load("/user/loadUserInfo")
+
+        //加载左边数菜单
+        $("#tree").tree({
+            lines:true,
+            url:"/user/loadMenuInfo?pId=-1",
+            onLoadSuccess:function () {
+                $("#tree").tree("expandAll");//加载后展现所有节点
+            }
+        })
+    })
+
+
+
+</script>
+</head>
+<body class="easyui-layout">
+<div region="north" style="height: 80px;">
+	<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="362px" style="background:url(http://www.zhbit.com/skin/2013/images/logo.jpg)">
+			</td>
+			<td style="background-color: #fff">
+				<div id="userInfo" class="userInfo"></div>
+			</td>
+			<td valign="bottom" width="544px" style="background-color: #fff">
+				<div id="clock" class="clock"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div region="center">
+	<div id="tabs" class="easyui-tabs" fit="true" border="false"></div>
+</div>
+
+<div region="west" style="width: 200px" title="导航菜单" split="true" iconCls="icon-navigation">
+	<ul id="tree" class="easyui-tree" style="padding: 10px"></ul>
+</div>
+
+<div region="south" style="height: 30px;padding: 5px" align="center">
+	Copyright © 2015-2017 北京理工大学珠海学院  版权所有
+</div>
+
+
+
+
+</body>
+</html>

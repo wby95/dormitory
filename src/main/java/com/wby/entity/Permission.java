@@ -22,6 +22,9 @@ public class Permission {
     @Column(length = 20)
     private String name;
 
+    @Column(length=200)
+    private String url; // 菜单地址
+
     private Integer pId;
 
     private Integer state;
@@ -64,6 +67,14 @@ public class Permission {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override

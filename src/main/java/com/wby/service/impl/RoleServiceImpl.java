@@ -1,5 +1,6 @@
 package com.wby.service.impl;
 
+import com.wby.entity.Role;
 import com.wby.entity.User;
 import com.wby.repository.RoleRepository;
 import com.wby.service.RoleService;
@@ -25,7 +26,18 @@ public class RoleServiceImpl implements RoleService {
      * @return
      */
     @Override
-    public User findByUserId(Integer userId) {
+    public Role findByUserId(Integer userId) {
         return roleRepository.findByUserId(userId);
+    }
+
+
+    /**
+     * 根据id查角色
+     * @param id
+     * @return
+     */
+    @Override
+    public Role findById(Integer id) {
+       return roleRepository.findOne(id);
     }
 }

@@ -7,6 +7,7 @@ import com.wby.service.RoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created with IDEA
@@ -39,5 +40,15 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role findById(Integer id) {
        return roleRepository.findOne(id);
+    }
+
+
+    /**
+     * 查询所有角色
+     * @return
+     */
+    @Override
+    public List<Role> selectAllRole() {
+        return roleRepository.findAll();
     }
 }

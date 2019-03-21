@@ -2,6 +2,8 @@ package com.wby.service;
 
 import com.wby.entity.Role;
 
+import java.util.List;
+
 
 /**
  * Created with IDEA
@@ -24,4 +26,10 @@ public interface RoleService {
      * @return
      */
     Role findById(Integer id);
+
+    /**
+     * 查询所有角色
+     * @return
+     */
+    public List<Role> selectAllRole();
 }

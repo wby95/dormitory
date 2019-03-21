@@ -46,6 +46,17 @@
 
         window.setInterval("showTime()", 1000);
 
+        //首页
+        var content="<iframe frameborder=0 scrolling='auto' style='width:100%;height:99%' src='/center/index.html'></iframe>";
+
+        $("#tabs").tabs("add",{
+            title:"首页",
+            iconCls:"menu-25",
+            closable:false,
+            content:content
+        });
+
+
         //加载验证信息
         $("#userInfo").load("/user/loadUserInfo")
 
@@ -55,8 +66,30 @@
             url:"/user/loadMenuInfo?pId=-1",
             onLoadSuccess:function () {
                 $("#tree").tree("expandAll");//加载后展现所有节点
+            },
+            onClick:function(node){  //打开center页面
+                    openTab(node);
             }
         })
+
+
+        function openTab(node){
+            if($("#tabs").tabs("exists",node.text)){
+                $("#tabs").tabs("select",node.text)
+            }else{
+                var content="<iframe frameborder=0 scrolling='auto' style='width:100%;height:99%' src='"+node.attributes.url+"'></iframe>";
+
+                $("#tabs").tabs("add",{
+                    title:node.text,
+                    iconCls:node.iconCls,
+                    closable:true,
+                    content:content
+                });
+            }
+        }
+
+
+
     })
 
 

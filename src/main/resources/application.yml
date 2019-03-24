@@ -10,3 +10,5 @@ spring:
   thymeleaf:
     cache: false
 
+
+imageFilePath: E://Users/Administrator/IdeaProjects/dormitory/src/main/webapp/static/images

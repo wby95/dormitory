@@ -1,0 +1,37 @@
+-- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
+--
+-- Host: localhost    Database: dormitory
+-- ------------------------------------------------------
+-- Server version	5.1.62-community
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `t_notice`
+--
+
+LOCK TABLES `t_notice` WRITE;
+/*!40000 ALTER TABLE `t_notice` DISABLE KEYS */;
+INSERT INTO `t_notice` VALUES (21,'<p>trrr</p>\r\n','2eeee','2019-03-23 15:07:51'),(22,'<p>0</p>\r\n','0','2019-03-21 22:44:56'),(23,'<p><img alt=\"\" src=\"/static/images20190322110306.jpg\" style=\"height:130px; width:160px\" /></p>\r\n','99sss','2019-03-23 15:07:29'),(24,'<p><img alt=\"\" src=\"/static/images20190322110413.jpg\" style=\"height:853px; width:1280px\" /></p>\r\n','99','2019-03-22 11:04:28');
+/*!40000 ALTER TABLE `t_notice` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-03-24 17:41:33

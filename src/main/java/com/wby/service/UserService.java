@@ -58,4 +58,8 @@ public interface UserService {
      * @param id
      */
     public User findById(Integer id);
+
+    List<User> stuList(User user, Integer page, Integer rows, Sort.Direction asc, String id);
+
+    Long getStuTotalCount(User user);
 }

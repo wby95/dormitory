@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,6 +64,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 查询总的记录数
+     *
      * @param user
      * @return
      */
@@ -89,6 +91,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 保存用户
+     *
      * @param user
      */
     @Override
@@ -100,6 +103,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 根据id删除用户
+     *
      * @param id
      */
     @Override
@@ -110,11 +114,72 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 根据id查询用户
+     *
      * @param id
      */
     @Override
     public User findById(Integer id) {
-       return userRepository.findByUserId(id);
+        return userRepository.findByUserId(id);
     }
 
+    @Override
+    public List<User> stuList(User user, Integer page, Integer rows, Sort.Direction asc, String id) {
+        Pageable pageable = new PageRequest(page - 1, rows);
+        Page<User> pageUser = userRepository.findAll(new Specification<User>() {
+            @Override
+            public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicateList = new ArrayList<Predicate>();
+                if (user != null) {
+                    if (StringUtil.isNotEmpty(user.getUserName())) {
+                        predicateList.add(criteriaBuilder.or(criteriaBuilder.like(root.get("userName"), "%" + user.getUserName() + "%")));
+                    }
+
+                }
+                Predicate[] array = new Predicate[predicateList.size()];
+                Predicate Pre_And = criteriaBuilder.and(predicateList.toArray(array));
+
+                List<Predicate> listOr = new ArrayList<Predicate>();
+                List<String>stringList = userRepository.findAllStu();
+                for (int i=0;i<stringList.size();i++){
+                    listOr.add(criteriaBuilder.equal(root.get("id"), stringList.get(i)));
+                }
+
+                Predicate[] arrayOr = new Predicate[listOr.size()];
+                Predicate Pre_Or = criteriaBuilder.or(listOr.toArray(arrayOr));
+                return criteriaQuery.where(Pre_And,Pre_Or).getRestriction();
+            }
+        }, pageable);
+
+        return pageUser.getContent();
+    }
+
+    @Override
+    public Long getStuTotalCount(User user) {
+        Long count = userRepository.count(new Specification<User>() {
+            @Override
+            public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicateList = new ArrayList<Predicate>();
+                if (user != null) {
+                    if (StringUtil.isNotEmpty(user.getUserName())) {
+                        predicateList.add(criteriaBuilder.or(criteriaBuilder.like(root.get("userName"), "%" + user.getUserName() + "%")));
+                    }
+
+                }
+                Predicate[] array = new Predicate[predicateList.size()];
+                Predicate Pre_And = criteriaBuilder.and(predicateList.toArray(array));
+
+                List<Predicate> listOr = new ArrayList<Predicate>();
+                List<String>stringList = userRepository.findAllStu();
+                for (int i=0;i<stringList.size();i++){
+                    listOr.add(criteriaBuilder.equal(root.get("id"), stringList.get(i)));
+                }
+
+                Predicate[] arrayOr = new Predicate[listOr.size()];
+                Predicate Pre_Or = criteriaBuilder.or(listOr.toArray(arrayOr));
+                return criteriaQuery.where(Pre_And,Pre_Or).getRestriction();
+            }
+        });
+
+        return count;
+    }
 }

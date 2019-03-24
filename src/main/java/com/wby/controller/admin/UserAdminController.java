@@ -102,4 +102,33 @@ public class UserAdminController {
         return map;
     }
 
+    /**
+     * 获取用户列表
+     * @param user
+     * @param page
+     * @param rows
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/listStudent")
+    public Map<String, Object> listStudent(User user, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) throws Exception {
+        Map<String, Object> resultMap = new HashMap<>();
+        List<User> userList = userService.stuList(user, page, rows, Sort.Direction.ASC, "id");
+        for (User u : userList) {
+            Role roleList = roleService.findByUserId(u.getId());
+            StringBuffer sb = new StringBuffer();
+            if(roleList !=null) {
+                sb.append("," + roleList.getName());
+                u.setRoles(sb.toString().replaceFirst(",", ""));
+            }
+        }
+
+        Long total = userService.getStuTotalCount(user);
+        System.out.println(total);
+        resultMap.put("rows", userList);
+        resultMap.put("total", total);
+        return resultMap;
+    }
+
+
 }

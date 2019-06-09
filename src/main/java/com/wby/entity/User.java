@@ -4,12 +4,7 @@ package com.wby.entity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "t_user")
@@ -32,6 +27,18 @@ public class User {
 
     @Transient
     private String roles; // 所拥有的角色
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "domitoryId" ,nullable = true)
+    private Domitory domitory;
+
+    public Domitory getDomitory() {
+        return domitory;
+    }
+
+    public void setDomitory(Domitory domitory) {
+        this.domitory = domitory;
+    }
 
     public Integer getId() {
         return id;
@@ -81,6 +88,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", trueName='" + trueName + '\'' +
                 ", roles='" + roles + '\'' +
+                ", domitory=" + domitory+
                 '}';
     }
 }

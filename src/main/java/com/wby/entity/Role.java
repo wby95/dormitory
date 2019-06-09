@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Date:2019/3/6 0006
  * Time:13:30
  **/
-
+//2
 @Entity
 @Table(name = "t_role")
 public class Role {

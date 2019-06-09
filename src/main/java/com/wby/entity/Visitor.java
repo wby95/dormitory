@@ -44,14 +44,22 @@ public class Visitor {
     @Column
     private String phoneNum;
 
-    private Date date;
+    private String date;
 
     @Column
     private String visitorName;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    private Integer state;
+
+    public Integer getState() {
+        return state;
+    }
+    //https://blog.csdn.net/cr4blm123/article/details/49998563
+    //https://ask.csdn.net/questions/695195
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
 
     public Integer getId() {
         return id;
@@ -84,20 +92,12 @@ public class Visitor {
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
-    @JsonSerialize(using=CustomDateTimeSerializer.class)
-    public Date getDate() {
+
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

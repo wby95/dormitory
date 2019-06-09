@@ -1,7 +1,7 @@
 package com.wby.entity;
 
 import javax.persistence.*;
-
+// 11111111111
 /**
  * Created with IDEA
  * Author:wangboyue
